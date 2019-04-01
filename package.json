@@ -1,26 +1,38 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Serves API routes for the AUT Shuttle App and interacts with the data. ",
+  "description": "Serves API routes for the AUT Shuttle App and interacts with the data.",
   "main": "server.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "format": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aut-shuttle/api.git"
   },
-  "author": "Thea",
+  "author": "Thea Miguel, Olaf Wrieden, Chenhui Lyu, Michael Jeffcoat",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aut-shuttle/api/issues"
   },
   "homepage": "https://github.com/aut-shuttle/api#readme",
   "dependencies": {
-    "dotenv": "^7.0.0"
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv-safe": "^6.1.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
   }
 }

@@ -1,1 +1,37 @@
-require("dotenv").config();
+require("dotenv-safe").config()
+const express = require('express')
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const helmet = require('helmet')
+const cors = require('cors')
+const passport = require('passport')
+const app = express()
+
+// Express port, default: 3000
+app.set('port', process.env.PORT || 3000)
+
+// Development Only: Enable HTTP request logger
+if (process.env.NODE_ENV === 'development') {
+	app.use(morgan('dev'))
+}
+
+// Limit JSON request size
+app.use(
+	bodyParser.json({
+		limit: '20mb'
+	})
+)
+// Limit application/x-www-form-urlencoded request size
+app.use(
+	bodyParser.urlencoded({
+		limit: '20mb',
+		extended: true
+	})
+)
+
+// Initialise Middleware
+app.use(cors())
+app.use(passport.initialize())
+app.use(helmet())
+// app.use(require("./app/routes")) // --> Uncomment when "/"" route exists.
+app.listen(app.get('port'))
