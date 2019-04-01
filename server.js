@@ -35,3 +35,5 @@ app.use(passport.initialize())
 app.use(helmet())
 // app.use(require("./app/routes")) // --> Uncomment when "/"" route exists.
 app.listen(app.get('port'))
+
+module.exports = app
