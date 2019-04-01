@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Serves API routes for the AUT Shuttle App and interacts with the data. ",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aut-shuttle/api.git"
+  },
+  "author": "Thea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aut-shuttle/api/issues"
+  },
+  "homepage": "https://github.com/aut-shuttle/api#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0"
+  }
+}
