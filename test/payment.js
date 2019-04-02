@@ -7,8 +7,8 @@ const should = chai.should()
 
 const paymentDetails = {
 	userID: 1,
-  transactionID: 'PAY-TEST123-FROMPAYPAL',
-  amount: 23
+	transactionID: 'PAY-TEST123-FROMPAYPAL',
+	amount: 23
 }
 
 chai.use(chaiHttp)
@@ -22,8 +22,8 @@ describe('*********** PAYMENT ***********', () => {
 				.send(paymentDetails)
 				.end((err, res) => {
 					res.should.have.status(200)
-          res.body.should.be.an('object')
-          res.body.should.have.property('tranactionID')
+					res.body.should.be.an('object')
+					res.body.should.have.property('tranactionID')
 					done()
 				})
 		})
