@@ -30,14 +30,17 @@
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
     "passport": "^0.4.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sequelize": "^5.2.10"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4",
-    "mocha": "^6.0.2",
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.1"
+    "sequelize-cli": "^5.4.0"
   }
 }
