@@ -1,17 +1,19 @@
 const express = require('express')
 const router = express.Router()
+
+const fs = require('fs')
 const routesPath = `${__dirname}/`
-const userController = require('../controllers').user
+const { removeExtensionFromFile } = require('../middleware/utils')
 
-
-
-router.get('/api', (req, res) =>
-	res.status(200).send({
-		message: 'Welcome to my API'
-	})
-)
-
-router.post('/api/user', userController.create)
+// Loop routes path and loads every file as a route except this file and Auth route
+fs.readdirSync(routesPath).filter(file => {
+	// Take filename and remove last part (extension)
+	const routeFile = removeExtensionFromFile(file)
+	// Prevents loading of this file and auth file
+	return routeFile !== 'index' && routeFile !== 'auth'
+	  ? router.use(`/${routeFile}`, require(`./${routeFile}`))
+	  : ''
+  })
 
 // Index Route
 router.get('/', (req, res) => {

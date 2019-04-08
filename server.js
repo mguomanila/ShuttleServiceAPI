@@ -8,7 +8,6 @@ const passport = require('passport')
 const path = require('path')
 const app = express()
 
-
 // Express port, default: 3000
 app.set('port', process.env.PORT || 3000)
 
@@ -42,6 +41,7 @@ models.sequelize
 	.catch(function(err) {
 		console.log(err, 'something is wrong')
 	})
+
 
 
 // Initialise Middleware

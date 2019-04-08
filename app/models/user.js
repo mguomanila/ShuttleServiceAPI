@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
 		balance: {
 			type: DataTypes.DECIMAL
 		}
-	})
+	},
+	{
+		timestamps: false
+	}
+	)
 	return User
 }
