@@ -6,10 +6,9 @@ const server = require('../server')
 const should = chai.should()
 
 const userDetails = {
-	userID: 1,
-	name: 'Michael Jeffcoat',
-	email: 'mwb8386@autuni.ac.nz',
-	studentId: 'mwb8386'
+	first_name: 'Michael',
+	last_name: 'Jeffcoat',
+	balance: 500
 }
 
 chai.use(chaiHttp)
@@ -19,14 +18,10 @@ describe('*********** USER ***********', () => {
 		it('it should POST user information', done => {
 			chai
 				.request(server)
-				.post('/user')
+				.post('/api/user')
 				.send(userDetails)
 				.end((err, res) => {
-					res.should.have.status(200)
-					res.body.should.be.an('object')
-					res.body.should.have.property('name')
-					res.body.should.have.property('email')
-					res.body.should.have.property('studentId')
+					res.should.have.status(201)
 					done()
 				})
 		})

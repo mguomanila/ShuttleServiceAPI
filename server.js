@@ -43,7 +43,6 @@ models.sequelize
 		console.log(err, 'something is wrong')
 	})
 
-//require('./app/routes')(app)
 
 // Initialise Middleware
 app.use(cors())
