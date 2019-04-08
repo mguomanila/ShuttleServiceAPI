@@ -1,6 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const routesPath = `${__dirname}/`
+const userController = require('../controllers').user
+
+
+
+router.get('/api', (req, res) =>
+	res.status(200).send({
+		message: 'Welcome to my API'
+	})
+)
+
+router.post('/api/user', userController.create)
 
 // Index Route
 router.get('/', (req, res) => {

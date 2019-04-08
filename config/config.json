@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
+    "username": "autshuttle",
+    "password": "387bW6jFTj7UxFy6",
+    "database": "autshuttle",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": "autshuttle",
+    "password": "387bW6jFTj7UxFy6",
+    "database": "autshuttle",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": "autshuttle",
+    "password": "387bW6jFTj7UxFy6",
+    "database": "autshuttle",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

@@ -8,6 +8,7 @@ const passport = require('passport')
 const path = require('path')
 const app = express()
 
+
 // Express port, default: 3000
 app.set('port', process.env.PORT || 3000)
 
@@ -29,6 +30,20 @@ app.use(
 		extended: true
 	})
 )
+
+//Database initialisation
+const models = require('./app/models')
+
+models.sequelize
+	.sync()
+	.then(function() {
+		console.log('Nice! Database working')
+	})
+	.catch(function(err) {
+		console.log(err, 'something is wrong')
+	})
+
+//require('./app/routes')(app)
 
 // Initialise Middleware
 app.use(cors())
