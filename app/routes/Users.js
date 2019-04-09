@@ -2,20 +2,24 @@ const express = require('express')
 const router = express.Router()
 const userController = require('../controllers').user
 
-// Index Route
-router.get('/', (req, res) =>
-	res.status(200).send({
-		message: 'Users API'
-	})
-)
-
 //Create User Route
-router.post('/create', userController.createUser)
+router.post('/', userController.createUser)
 
-//Get All Users
-router.get('/getall', userController.getAll)
+//Read all Users
+router.get('/', userController.getAll)
 
-// Get one User by ID
-router.get('/getone/:id', userController.getOne)
+// Read one user by ID
+router.get('/:id', userController.getOne)
+
+//Update one user by ID
+
+//Delete one user by ID
+
+// // Old index route kept here for fault finding when I break things
+// router.get('/', (req, res) =>
+// 	res.status(200).send({
+// 		message: 'Users API'
+// 	})
+// )
 
 module.exports = router
