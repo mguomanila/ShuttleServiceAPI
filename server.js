@@ -42,8 +42,6 @@ models.sequelize
 		console.log(err, 'something is wrong')
 	})
 
-
-
 // Initialise Middleware
 app.use(cors())
 app.use(passport.initialize())
