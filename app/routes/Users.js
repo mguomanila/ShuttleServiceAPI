@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../controllers').user
-var model = require('../models/index').User;
 
 // Index Route
 router.get('/', (req, res) =>
@@ -11,19 +10,12 @@ router.get('/', (req, res) =>
 )
 
 //Create User Route
-router.post('/create', userController.create)
+router.post('/create', userController.createUser)
 
+//Get All Users
+router.get('/getall', userController.getAll)
 
-router.get('/getall', function (req, res, next) {
-    model.findAll({})
-        .then(todos => res.json({
-            data: todos
-        }))
-        .catch(error => res.json({
-            error: error
-        }));
-});
-
-
+// Get one User by ID
+router.get('/getone/:id', userController.getOne)
 
 module.exports = router
