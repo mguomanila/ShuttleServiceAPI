@@ -26,12 +26,12 @@ describe('/POST user', () => {
 			first_name: faker.name.firstName(),
 			last_name: faker.name.lastName(),
 			date_of_birth: faker.date.past(20),
-			gender: "MALE",
+			gender: 'MALE',
 			role_id: faker.random.number(3),
 			email_address: faker.internet.email(),
 			password: faker.random.word(10),
 			university_id: faker.random.number(20000),
-			id_expiry: faker.date.future(2),
+			id_expiry: faker.date.future(2)
 		}
 		chai
 			.request(server)
