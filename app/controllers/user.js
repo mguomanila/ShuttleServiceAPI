@@ -29,5 +29,26 @@ module.exports = {
 		User.findOne({ where: { id: id } })
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
+	},
+
+	update(req, res) {
+		const id = req.params.id
+		const updates = req.body.updates
+		User.findOne({
+			where: { id: id }
+		})
+			.then(user => {
+				return user.update(updates)
+			})
+			.then(user => res.status(201).send(user))
+			.catch(error => res.status(400).send(error))
+	},
+	delete(req, res) {
+		const id = req.params.id
+		User.destroy({
+			where: { id: id }
+		})
+			.then(deletedUser => {res.json(deletedUser)})
+			.catch(error => res.status(400).send(error))
 	}
 }
