@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Serves API routes for the AUT Shuttle App and interacts with the data.",
+  "description": "Serves API routes for the AUT Shuttle App and interacts with the data.test",
   "main": "server.js",
   "directories": {
     "test": "test"
