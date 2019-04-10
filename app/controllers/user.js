@@ -43,12 +43,15 @@ module.exports = {
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
 	},
+
 	delete(req, res) {
 		const id = req.params.id
 		User.destroy({
 			where: { id: id }
 		})
-			.then(deletedUser => {res.json(deletedUser)})
+			.then(deletedUser => {
+				res.json(deletedUser)
+			})
 			.catch(error => res.status(400).send(error))
 	}
 }
