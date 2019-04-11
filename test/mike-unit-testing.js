@@ -27,7 +27,7 @@ describe('/POST user', () => {
 			last_name: faker.name.lastName(),
 			date_of_birth: faker.date.past(20),
 			gender: 'MALE',
-			role_id: faker.random.number(3),
+			role_id: 3,
 			email_address: faker.internet.email(),
 			password: faker.random.word(10),
 			university_id: faker.random.number(20000),
@@ -46,6 +46,7 @@ describe('/POST user', () => {
 describe('/POST role', () => {
 	it('it should POST a role ', done => {
 		const role = {
+			id: 4,
 			name: faker.name.firstName(),
 			description: faker.random.words(3)
 		}
