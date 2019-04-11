@@ -27,7 +27,7 @@ describe('/POST user', () => {
 			last_name: faker.name.lastName(),
 			date_of_birth: faker.date.past(20),
 			gender: 'MALE',
-			role_id: 3,
+			role_id: faker.random.number(1, 3),
 			email_address: faker.internet.email(),
 			password: faker.random.word(10),
 			university_id: faker.random.number(20000),
