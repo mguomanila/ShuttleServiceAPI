@@ -43,3 +43,19 @@ describe('/POST user', () => {
 			})
 	})
 })
+describe('/POST role', () => {
+	it('it should POST a role ', done => {
+		const role = {
+			name: faker.name.firstName(),
+			description: faker.random.words(3)
+		}
+		chai
+			.request(server)
+			.post('/Roles')
+			.send(role)
+			.end((err, res) => {
+				res.should.have.status(201)
+				done()
+			})
+	})
+})
