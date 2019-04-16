@@ -1,4 +1,6 @@
 const User = require('../models/').User
+const emailer = require('../middleware/emailer')
+
 module.exports = {
 	/**
 	 * Creates a user based on given details.
@@ -18,6 +20,7 @@ module.exports = {
 			university_id: req.body.university_id,
 			id_expiry: req.body.id_expiry
 		})
+			.then(user => emailer.sendRegistrationEmailMessage(user))
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
 	},
