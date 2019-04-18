@@ -1,4 +1,4 @@
-const User = require('../models/').User
+const User = require('../models').Role
 module.exports = {
 	/**
 	 * Creates a user based on given details.
@@ -7,23 +7,16 @@ module.exports = {
 	 */
 	createUser(req, res) {
 		return User.create({
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			date_of_birth: req.body.date_of_birth,
-			gender: req.body.gender,
-			role_id: req.body.role_id,
-			email_address: req.body.email_address,
-			password: req.body.password,
-			balance: req.body.balance,
-			university_id: req.body.university_id,
-			id_expiry: req.body.id_expiry
+			id: req.body.id,
+			name: req.body.name,
+			description: req.body.description,
 		})
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
 	},
 
 	/**
-	 * Returns the details for all users.
+	 * Returns the details for all roles.
 	 * @param {Object} req Request body
 	 * @param {Object} res Response body
 	 */
@@ -34,20 +27,19 @@ module.exports = {
 	},
 
 	/**
-	 * Returns the given user's details.
+	 * Returns the given roles details.
 	 * @param {Object} req Request body
 	 * @param {Object} res Response body
 	 */
 	getOne(req, res) {
 		const id = req.params.id
-		User.findOne()
 		User.findOne({ where: { id: id } })
 			.then(user => res.status(200).send(user))
 			.catch(error => res.status(400).send(error))
 	},
 
 	/**
-	 * Updates the given user returns modified user
+	 * Updates the given role and returns modified role
 	 * @param {Object} req Request body
 	 * @param {Object} res Request response
 	 */
@@ -65,7 +57,7 @@ module.exports = {
 	},
 
 	/**
-	 * Deletes the given user from the database returns number of rows deleted.
+	 * Deletes the given role from the database returns number of rows deleted.
 	 * @param {Object} req Request body
 	 * @param {Object} res Request response
 	 */

@@ -29,4 +29,11 @@ router.use('*', (req, res) => {
 	})
 })
 
+// // Old index route kept here for fault finding when I break things
+// router.get('/', (req, res) =>
+// 	res.status(200).send({
+// 		message: 'Users API'
+// 	})
+// )
+
 module.exports = router

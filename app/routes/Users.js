@@ -17,11 +17,4 @@ router.patch('/:id', userController.update)
 //Delete one user by ID
 router.delete('/:id', userController.delete)
 
-// // Old index route kept here for fault finding when I break things
-// router.get('/', (req, res) =>
-// 	res.status(200).send({
-// 		message: 'Users API'
-// 	})
-// )
-
 module.exports = router

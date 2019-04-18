@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "7499b45e-87ab-4952-afd3-74c0d99d1072",
+		"name": "aut-shuttle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add User to Database",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d89b4bd9-93a0-452c-93bf-6dbb21ae4ed1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Ian",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Smith",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1989-10-30",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "MALE",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "email_address",
+									"value": "iansmith@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "points",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "university_id",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "id_expiry",
+									"value": "2020-10-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/Users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								""
+							]
+						},
+						"description": "WORKING DATABASE ENTRY FOR SHUTTLE"
+					},
+					"response": []
+				},
+				{
+					"name": "Get One User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								""
+							]
+						},
+						"description": "Working Get request for a single database entry based on the parameter"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								""
+							]
+						},
+						"description": "Get request for all available database entries"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"first_name\": \"Patchman\",\n        \"last_name\": \"Patage\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/Users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								"1"
+							]
+						},
+						"description": "PATCH route test"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User from Database",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								"9"
+							]
+						},
+						"description": "Delete User from Database"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Add Role to Database",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d89b4bd9-93a0-452c-93bf-6dbb21ae4ed1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "I am the admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/Roles/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Roles",
+								""
+							]
+						},
+						"description": "WORKING DATABASE ENTRY FOR SHUTTLE ROLE"
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								""
+							]
+						},
+						"description": "Working Get request for a single database entry based on the parameter"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								""
+							]
+						},
+						"description": "Get request for all available database entries"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a Role",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"description\": \"Administrator access to the web application.\"\n    }\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/Roles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Roles",
+								"1"
+							]
+						},
+						"description": "PATCH route"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role from Database",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/Users/9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Users",
+								"9"
+							]
+						},
+						"description": "Delete Role from Database"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
