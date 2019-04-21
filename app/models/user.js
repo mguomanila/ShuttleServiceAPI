@@ -4,13 +4,16 @@ module.exports = (sequelize, DataTypes) => {
 		'User',
 		{
 			first_name: {
-				type: DataTypes.STRING(100)
+				type: DataTypes.STRING(100),
+				required: true
 			},
 			last_name: {
-				type: DataTypes.STRING(100)
+				type: DataTypes.STRING(100),
+				required: true
 			},
 			date_of_birth: {
-				type: DataTypes.DATEONLY
+				type: DataTypes.DATEONLY,
+				required: true
 			},
 			gender: {
 				type: DataTypes.ENUM('MALE', 'FEMALE', 'DIVERSE')
@@ -19,30 +22,35 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER(11)
 			},
 			email_address: {
-				type: DataTypes.STRING(255)
+				type: DataTypes.STRING(255),
+				lowercase: true,
+				unique: true,
+				required: true
 			},
 			email_verified: {
 				type: DataTypes.TINYINT(1),
 				defaultValue: 0
 			},
 			password: {
-				type: DataTypes.STRING(255)
+				type: DataTypes.STRING(255),
+				required: true,
+				select: false
 			},
 			balance: {
-				type: DataTypes.DECIMAL(5, 2)
+				type: DataTypes.DECIMAL(5, 2),
+				defaultValue: 0
 			},
 			points: {
 				type: DataTypes.INTEGER(11),
 				defaultValue: 0
 			},
 			university_id: {
-				type: DataTypes.STRING(20)
+				type: DataTypes.STRING(20),
+				required: true
 			},
 			id_expiry: {
-				type: DataTypes.DATEONLY
-			},
-			university_id: {
-				type: DataTypes.STRING
+				type: DataTypes.DATEONLY,
+				required: true
 			},
 			registration_at: {
 				type: DataTypes.DATE,
