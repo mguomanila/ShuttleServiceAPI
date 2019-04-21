@@ -1,4 +1,6 @@
 'use strict'
+const validator = require('validator')
+
 module.exports = (sequelize, DataTypes) => {
 	var User = sequelize.define(
 		'User',
@@ -23,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			email_address: {
 				type: DataTypes.STRING(255),
+				validate: {
+					validator: validator.isEmail,
+					message: 'INVALID_EMAIL_ADDRESS'
+				},
 				lowercase: true,
 				unique: true,
 				required: true
