@@ -2,6 +2,8 @@ const User = require('../models/').User
 const Role = require('../models/').Role
 const uuid = require('uuid')
 const emailer = require('../middleware/emailer')
+const emailer = require('../middleware/emailer')
+
 module.exports = {
 	/**
 	 * Creates a user based on given details.
