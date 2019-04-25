@@ -1,15 +1,16 @@
-const User = require('../models').Role
+const Role = require('../models/').Role
+const utils = require('../middleware/utils')
 module.exports = {
 	/**
 	 * Creates a user based on given details.
 	 * @param {Object} req Request body
 	 * @param {Object} res Response body
 	 */
-	createUser(req, res) {
-		return User.create({
+	createRole(req, res) {
+		return Role.create({
 			id: req.body.id,
 			name: req.body.name,
-			description: req.body.description,
+			description: req.body.description
 		})
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
@@ -21,9 +22,18 @@ module.exports = {
 	 * @param {Object} res Response body
 	 */
 	getAll(req, res) {
-		User.findAll({})
-			.then(users => res.status(200).send(users))
-			.catch(error => res.status(400).send(error))
+		Role.scope('all')
+			.findAll({})
+			.then(role =>
+				role != null
+					? res.status(200).send(role)
+					: res.status(404).json({
+							errors: {
+								msg: 'NOT_FOUND'
+							}
+					  })
+			)
+			.catch(error => res.status(422).send(error.message))
 	},
 
 	/**
@@ -33,9 +43,22 @@ module.exports = {
 	 */
 	getOne(req, res) {
 		const id = req.params.id
-		User.findOne({ where: { id: id } })
-			.then(user => res.status(200).send(user))
-			.catch(error => res.status(400).send(error))
+		Role.scope('all')
+			.findOne({
+				where: {
+					id
+				}
+			})
+			.then(role =>
+				role != null
+					? res.status(200).send(role)
+					: res.status(404).json({
+							errors: {
+								msg: 'NOT_FOUND'
+							}
+					  })
+			)
+			.catch(error => res.status(422).send(error.message))
 	},
 
 	/**
@@ -45,15 +68,28 @@ module.exports = {
 	 */
 	update(req, res) {
 		const id = req.params.id
-		const updates = req.body.updates
-		User.findOne({
-			where: { id: id }
+		Role.findOne({
+			where: {
+				id
+			}
 		})
-			.then(user => {
-				return user.update(updates)
+			.then(role => {
+				if (role == null) {
+					res.status(404).json({
+						errors: {
+							msg: 'NOT_FOUND'
+						}
+					})
+				} else {
+					;(role.name = req.body.name),
+						(role.description = req.body.description),
+						role
+							.save()
+							.then(res.status(200).json(role))
+							.catch(error => utils.buildErrObject(422, error.message))
+				}
 			})
-			.then(user => res.status(200).send(user))
-			.catch(error => res.status(400).send(error))
+			.catch(error => res.status(422).send(error.message))
 	},
 
 	/**
@@ -63,12 +99,28 @@ module.exports = {
 	 */
 	delete(req, res) {
 		const id = req.params.id
-		User.destroy({
-			where: { id: id }
+		Role.destroy({
+			where: {
+				id
+			}
 		})
-			.then(deletedUser => {
-				res.json(deletedUser)
+			.then(function(deletedRecord) {
+				if (deletedRecord === 1) {
+					res.status(200).json({
+						msg: 'DELETED'
+					})
+				} else {
+					res.status(404).json({
+						msg: 'NOT_FOUND'
+					})
+				}
 			})
-			.catch(error => res.status(400).send(error))
+			.catch(function(error) {
+				res.status(409).json({
+					error: {
+						msg: 'ROLE_IN_USE'
+					}
+				})
+			})
 	}
 }

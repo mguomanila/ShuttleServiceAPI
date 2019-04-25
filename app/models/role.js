@@ -1,11 +1,9 @@
-'use strict'
-
 module.exports = (sequelize, DataTypes) => {
 	var Role = sequelize.define(
 		'Role',
 		{
 			id: {
-				type: DataTypes.TINYINT(3),
+				type: DataTypes.INTEGER,
 				primaryKey: true
 			},
 			name: {
@@ -17,20 +15,17 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		{
 			timestamps: false,
-			tableName: 'Role'
-		},
-		{
-			classMethods: {
-				associate: models => {
-					Role.belongsTo(models.User, {
-						onDelete: 'CASCADE',
-						foreignKey: {
-							fieldName: 'role_id',
-							allowNull: false,
-							require: true
-						},
-						targetKey: 'id'
-					})
+			tableName: 'Role',
+			defaultScope: {
+				attributes: {
+					exclude: ['description']
+				}
+			},
+			scopes: {
+				all: {
+					attributes: {
+						include: ['description']
+					}
 				}
 			}
 		}

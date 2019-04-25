@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const userController = require('../controllers').user
+const controller = require('../controllers/role')
 const AuthController = require('../controllers/auth')
 require('../../config/passport')
 const passport = require('passport')
@@ -9,45 +9,44 @@ const requireAuth = passport.authenticate('jwt', {
 })
 const { ADMIN } = require('../middleware/utils')
 
-// Create a New User
+// Create a New Role
 router.post(
 	'/',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.createUser
+	controller.createRole
 )
 
-// Read all Users
+// Read all Roles
 router.get(
 	'/',
 	requireAuth,
-	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.getAll
+	controller.getAll
 )
 
-// Read one User by ID
+// Read one Role by ID
 router.get(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.getOne
+	controller.getOne
 )
 
-// Update one User by ID
+// Update one Role by ID
 router.patch(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.update
+	controller.update
 )
 
-// Delete one User by ID
+// Delete one Role by ID
 router.delete(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.delete
+	controller.delete
 )
 
 module.exports = router

@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
 const fs = require('fs')
 const routesPath = `${__dirname}/`
 const { removeExtensionFromFile } = require('../middleware/utils')
+
+// Load Auth route
+router.use('/', require('./auth'))
 
 // Loop routes path and loads every file as a route except this file and Auth route
 fs.readdirSync(routesPath).filter(file => {
