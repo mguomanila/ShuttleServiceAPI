@@ -1,4 +1,6 @@
 const User = require('../models/').User
+const Role = require('../models/').Role
+const uuid = require('uuid')
 module.exports = {
 	/**
 	 * Creates a user based on given details.
@@ -16,7 +18,8 @@ module.exports = {
 			password: req.body.password,
 			balance: req.body.balance,
 			university_id: req.body.university_id,
-			id_expiry: req.body.id_expiry
+			id_expiry: req.body.id_expiry,
+			verification: uuid.v4()
 		})
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error))
@@ -40,7 +43,11 @@ module.exports = {
 	 */
 	getOne(req, res) {
 		const id = req.params.id
-		User.findOne({ where: { id: id } })
+		User.findOne({
+			where: {
+				id: id
+			}
+		})
 			.then(user => res.status(200).send(user))
 			.catch(error => res.status(400).send(error))
 	},
@@ -54,7 +61,9 @@ module.exports = {
 		const id = req.params.id
 		const updates = req.body.updates
 		User.findOne({
-			where: { id: id }
+			where: {
+				id: id
+			}
 		})
 			.then(user => {
 				return user.update(updates)
@@ -71,7 +80,9 @@ module.exports = {
 	delete(req, res) {
 		const id = req.params.id
 		User.destroy({
-			where: { id: id }
+			where: {
+				id: id
+			}
 		})
 			.then(deletedUser => {
 				res.json(deletedUser)

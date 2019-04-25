@@ -1,8 +1,7 @@
-'use strict'
-const validator = require('validator')
+const bcrypt = require('bcrypt-nodejs')
 
 module.exports = (sequelize, DataTypes) => {
-	var User = sequelize.define(
+	const User = sequelize.define(
 		'User',
 		{
 			first_name: {
@@ -25,10 +24,6 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			email_address: {
 				type: DataTypes.STRING(255),
-				validate: {
-					validator: validator.isEmail,
-					message: 'INVALID_EMAIL_ADDRESS'
-				},
 				lowercase: true,
 				unique: true,
 				required: true
@@ -58,6 +53,19 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DATEONLY,
 				required: true
 			},
+			verification: {
+				type: DataTypes.STRING(50)
+			},
+			login_attempts: {
+				type: DataTypes.INTEGER(11),
+				default: 0,
+				select: false
+			},
+			block_expires: {
+				type: DataTypes.DATE(),
+				default: Date.now,
+				select: false
+			},
 			registration_at: {
 				type: DataTypes.DATE,
 				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
@@ -71,9 +79,93 @@ module.exports = (sequelize, DataTypes) => {
 			timestamps: false,
 			tableName: 'User',
 			defaultScope: {
-				attributes: { exclude: ['password'] }
+				attributes: {
+					exclude: ['password', 'role_id']
+				},
+				include: [
+					{
+						as: 'role',
+						model: sequelize.models.Role
+					}
+				]
+			},
+			scopes: {
+				all: {
+					attributes: {
+						include: ['password']
+					}
+				}
 			}
 		}
 	)
+
+	// Association: User -> Role
+	User.associate = models => {
+		User.belongsTo(models.Role, {
+			onDelete: 'CASCADE',
+			foreignKey: {
+				fieldName: 'role_id',
+				allowNull: false,
+				require: true
+			},
+			targetKey: 'id',
+			as: 'role'
+		})
+	}
+
+	// Before Creation and Update
+	User.beforeCreate(encryptPasswordIfChanged)
+	User.beforeUpdate(encryptPasswordIfChanged)
+
+	/**
+	 * Hash Password if Changed
+	 * @param {*} user the subject user
+	 * @param {*} options additional options
+	 */
+	function encryptPasswordIfChanged(user, options) {
+		if (user.changed('password')) {
+			return cryptPassword(user.get('password'))
+				.then(hash => {
+					user.password = hash
+				})
+				.catch(err => {
+					if (err) console.log(err)
+				})
+		}
+	}
+
+	/**
+	 * Hashes the given Password
+	 * @param {*} password raw password to hash
+	 */
+	function cryptPassword(password) {
+		return new Promise(function(resolve, reject) {
+			bcrypt.genSalt(10, function(err, salt) {
+				if (err) return reject(err)
+
+				bcrypt.hash(password, salt, null, function(err, hash) {
+					if (err) return reject(err)
+					return resolve(hash)
+				})
+			})
+		})
+	}
+
+	/**
+	 * Validates a given password agained the user
+	 */
+	User.prototype.comparePassword = function(passwordAttempt, cb) {
+		bcrypt.compare(passwordAttempt, this.get('password'), (err, isMatch) => {
+			err ? cb(err) : cb(null, isMatch)
+		})
+	}
+
+	/**
+	 * Returns the formatted full name of the user
+	 */
+	User.prototype.getFullname = () => {
+		return this.get('first_name') + ' ' + this.get('this.last_name')
+	}
+
 	return User
 }
