@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "5e050159-c4d3-4f9d-88b1-70e84a93dbf5",
+		"name": "AUT Shuttle",
+		"description": "Request Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email_address",
+									"value": "zz@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						},
+						"description": "Log in a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get One User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4ff3ef4a5bb3b56afd53a247db56d547a4a780c61839c8ed573b4137b85d9ec0bca20aff91b6a465b0b18d12b68d44eab686e8fa539ee587ca28652b91a3a54a96af6e7546da9c6c8e556282bbfecca1ba2f734c28e329d7a3a99ec6407ac7fea84676729f9766f77d744c8a0a3eb3ac04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"23"
+							]
+						},
+						"description": "Gets a User by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4ff3ef4a5bb3b56afd53a247db56d547a4a780c61839c8ed573b4137b85d9ec0bca20aff91b6a465b0b18d12b68d44eab686e8fa539ee587ca28652b91a3a54a96af6e7546da9c6c8e556282bbfecca1ba2f734c28e329d7a3a99ec6407ac7fea84676729f9766f77d744c8a0a3eb3ac04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Returns a list of all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Refresh Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4ff3ef4a5bb3b56afd53a247db56d547a4a780c61839c8ed573b4137b85d9ec0bca20aff91b6a465b0b18d12b68d44eab686e8fa539ee587ca28652b91a3a54a96af6e7546da9c6c8e556282bbfecca1ba2f734c28e329d7a3a99ec6407ac7fea84676729f9766f77d744c8a0a3eb3ac04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"token"
+							]
+						},
+						"description": "Get a new refresh token"
+					},
+					"response": []
+				},
+				{
+					"name": "Register New User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "New",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "User",
+									"type": "text"
+								},
+								{
+									"key": "email_address",
+									"value": "mzz@example.com",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "01/01/2001",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "DIVERSE",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "zz",
+									"type": "text"
+								},
+								{
+									"key": "university_id",
+									"value": "xyz",
+									"type": "text"
+								},
+								{
+									"key": "id_expiry",
+									"value": "01/12/2019",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						},
+						"description": "Register a New User"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "9927345f-e3a1-4f6f-ba34-c32050092d0c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"verify"
+							]
+						},
+						"description": "Verify a user's email"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email_address",
+									"value": "zz@example.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/forgot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"forgot"
+							]
+						},
+						"description": "Generate a forgot password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "edecb5fe-a778-4903-829a-7ed761f28039",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reset"
+							]
+						},
+						"description": "Resets the user's passport"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						},
+						"description": "Updates the given user's data"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4ff3ef4a5bb3b56afd53a247db56d547a4a780c61839c8ed573b4137b85d9ec0bca20aff91b6a465b0b18d12b68d44eab686e8fa539ee587ca28652b91a3a54a96af6e7546da9c6c8e556282bbfecca1ba2f734c28e329d7a3a99ec6407ac7fea84676729f9766f77d744c8a0a3eb3ac04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/users/32",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"32"
+							]
+						},
+						"description": "Deletes the given User"
+					},
+					"response": []
+				}
+			],
+			"description": "User-related Requests"
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4ff3ef4a5bb3b56afd53a247db56d547a4a780c61839c8ed573b4137b85d9ec0bca20aff91b6a465b0b18d12b68d44eab686e8fa539ee587ca28652b91a3a54a96af6e7546da9c6c8e556282bbfecca1ba2f734c28e329d7a3a99ec6407ac7fea84676729f9766f77d744c8a0a3eb3ac04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/profile/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								""
+							]
+						},
+						"description": "Returns the User's Profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4f5a0921886ddd8d022a549d31029048ba22cf8fde4baf873c23e52b21744ea8c6685cfa367e81dd5cdd3fbfe090e14f563203412e20c814ffc05248a2d8e0c836c44c262f4d94bc6c4297024ed67892e3c2218cd066c9f3575ae9c0c26d1dc0d37f2fe87302fb60f61a3838f2b6a89e09",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPassword",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "changed123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/profile/changePassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								"changePassword"
+							]
+						},
+						"description": "Changes the User's Password"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f40cb935e6dcfcbc8fc828e897f79ce667c92a9866719de816802dba0eeb66469b272f33bea1f562f5770cecee2e8c4f8a451829e094fc6669f8583606d17a2417a5291b24cfc787ac4232e48d134fef4372cd6bd3a3fad32a9e25c597801b114ae4ef9e052d7759b31f83cc933f7c674e65b7e3fa4251c237c7beea86b76140c5d47c18000e4acef967f4752eaf08954de4c30fc810a892bace69ce622ab2b9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "OldUser",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "oli",
+									"type": "text"
+								},
+								{
+									"key": "points",
+									"value": "55",
+									"type": "text"
+								},
+								{
+									"key": "university_id",
+									"value": "0987654321",
+									"type": "text"
+								},
+								{
+									"key": "id_expiry",
+									"value": "02/03/2030",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile"
+							]
+						},
+						"description": "Update the given user's profile"
+					},
+					"response": []
+				}
+			],
+			"description": "Profile-related Requests"
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Get All Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/roles",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"roles"
+							]
+						},
+						"description": "Returns all roles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/roles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"roles",
+								"1"
+							]
+						},
+						"description": "Returns a given ID's role"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/roles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"roles",
+								"1"
+							]
+						},
+						"description": "Updates a given ID's role"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/roles/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"roles",
+								"4"
+							]
+						},
+						"description": "Deletes a given role"
+					},
+					"response": []
+				}
+			],
+			"description": "Role-related requests"
+		}
+	]
+}
