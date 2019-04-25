@@ -25,6 +25,13 @@ const sequelize = new Sequelize(
 	}
 )
 
+console.log('****************************')
+console.log('*    Starting Server')
+console.log(`*    Port: ${process.env.PORT || 3000}`)
+console.log(`*    NODE_ENV: ${process.env.NODE_ENV}`)
+console.log(`*    Database: MySQL`)
+console.log('****************************')
+
 fs.readdirSync(__dirname)
 	.filter(file => {
 		return (
@@ -44,5 +51,6 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+
 
 module.exports = db

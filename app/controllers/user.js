@@ -53,7 +53,7 @@ module.exports = {
 	},
 
 	/**
-	 * Updates the given user.
+	 * Updates the given user returns modified user
 	 * @param {Object} req Request body
 	 * @param {Object} res Request response
 	 */
@@ -73,7 +73,7 @@ module.exports = {
 	},
 
 	/**
-	 * Deletes the given user from the database.
+	 * Deletes the given user from the database returns number of rows deleted.
 	 * @param {Object} req Request body
 	 * @param {Object} res Request response
 	 */
