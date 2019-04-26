@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
 	const ForgotPassword = sequelize.define(
 		'ForgotPassword',
 		{
-			email: {
+			email_address: {
 				type: DataTypes.STRING(100),
 				lowercase: true,
 				required: true
