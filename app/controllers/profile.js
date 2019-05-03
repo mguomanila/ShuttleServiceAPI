@@ -81,7 +81,7 @@ const updateProfileInDB = async (req, id) => {
 const findUser = async id => {
 	return new Promise((resolve, reject) => {
 		model
-			.findOne({
+			.scope('all').findOne({
 				where: {
 					id
 				}
