@@ -40,11 +40,11 @@ const updateProfileInDB = async (req, id) => {
 				if (user == null) {
 					utils.itemNotFound(null, user, reject, 'NOT_FOUND')
 				} else {
-					;(user.first_name = req.body.first_name),
-						(user.last_name = req.body.last_name),
-						(user.points = req.body.points),
-						(user.university_id = req.body.university_id),
-						(user.id_expiry = req.body.id_expiry)
+					user.first_name = req.body.first_name
+					user.last_name = req.body.last_name
+					user.points = req.body.points
+					user.university_id = req.body.university_id
+					user.id_expiry = req.body.id_expiry
 
 					user
 						.save()
@@ -81,7 +81,8 @@ const updateProfileInDB = async (req, id) => {
 const findUser = async id => {
 	return new Promise((resolve, reject) => {
 		model
-			.scope('all').findOne({
+			.scope('all')
+			.findOne({
 				where: {
 					id
 				}
