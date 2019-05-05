@@ -11,7 +11,7 @@ const validTopups = new Set([
 	'100.00'
 ])
 
-const getAllPayments = async id => {
+const getAllPayments = async () => {
 	return new Promise((resolve, reject) => {
 		Payment.findAll()
 			.then(user =>
@@ -75,9 +75,7 @@ const updateUserBalance = async (user, topupAmount) => {
 
 exports.getAll = async (req, res) => {
 	try {
-		//const id = await utils.isIDGood(req.user.id)
-		const id = 0
-		res.status(200).json(await getAllPayments(id))
+		res.status(200).json(await getAllPayments())
 	} catch (error) {
 		utils.handleError(res, error)
 	}
