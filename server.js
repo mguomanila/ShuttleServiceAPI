@@ -34,7 +34,7 @@ app.use(
 const models = require('./app/models')
 
 models.sequelize
-	//.sync()
+	//.sync({ force: true })
 	.authenticate()
 	.then(function() {
 		console.log('Nice! Database working')

@@ -1,6 +1,7 @@
 const User = require('../models/').User
 const Role = require('../models/').Role
 const uuid = require('uuid')
+const utils = require('../middleware/utils')
 module.exports = {
 	/**
 	 * Creates a user based on given details.
@@ -62,7 +63,7 @@ module.exports = {
 		const updates = req.body.updates
 		User.findOne({
 			where: {
-				id: id
+				id
 			}
 		})
 			.then(user => {
@@ -79,14 +80,10 @@ module.exports = {
 	 */
 	delete(req, res) {
 		const id = req.params.id
-		User.destroy({
-			where: {
-				id: id
-			}
-		})
-			.then(deletedUser => {
-				res.json(deletedUser)
+		User.destroy({ where: { id } })
+			.then(user => {
+				res.json(utils.buildSuccObject('USER_DELETED'))
 			})
-			.catch(error => res.status(400).send(error))
+			.catch(err => utils.buildErrObject(422, err.message))
 	}
 }
