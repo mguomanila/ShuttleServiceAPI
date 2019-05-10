@@ -73,14 +73,24 @@ module.exports = (sequelize, DataTypes) => {
 			enabled: {
 				type: DataTypes.TINYINT(1),
 				defaultValue: 1
+			},
+			deletedAt: {
+				type: DataTypes.DATE
 			}
 		},
 		{
-			timestamps: false,
+			timestamps: true,
+			paranoid: true,
 			tableName: 'User',
 			defaultScope: {
 				attributes: {
-					exclude: ['password', 'role_id']
+					exclude: [
+						'password',
+						'role_id',
+						'createdAt',
+						'updatedAt',
+						'deletedAt'
+					]
 				},
 				include: [
 					{
