@@ -577,7 +577,7 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
 	try {
 		const forgotPassword = await findForgotPassword(req.body.id)
-		const user = await findUserToResetPassword(forgotPassword.email)
+		const user = await findUserToResetPassword(forgotPassword.email_address)
 		await updatePassword(req.body.password, user)
 		const result = await markResetPasswordAsUsed(req, forgotPassword)
 		res.status(200).json(result)
