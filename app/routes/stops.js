@@ -17,7 +17,7 @@ router.post(
 	controller.createStop
 )
 
-// Read all Roles
+// Read all Stops
 router.get(
 	'/',
 	requireAuth,
@@ -25,29 +25,12 @@ router.get(
 	controller.getAll
 )
 
-// Read one Role by ID
+// Read one Stop by ID
 router.get(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
 	controller.getOne
 )
-
-/*
-// Update one Role by ID
-router.patch(
-	'/:id',
-	requireAuth,
-	AuthController.roleAuthorization(ADMIN),
-	controller.update
-)
-
-// Delete one Role by ID
-router.delete(
-	'/:id',
-	requireAuth,
-	AuthController.roleAuthorization(ADMIN),
-	controller.delete
-) */
 
 module.exports = router
