@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		{
 			timestamps: false,
-			tableName: 'Transaction',
+			tableName: 'Transaction'
 			// defaultScope: {
 			// 	include: [{ all: true }]
 			// }

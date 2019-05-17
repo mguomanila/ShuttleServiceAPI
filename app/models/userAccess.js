@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
 	const UserAccess = sequelize.define(
 		'UserAccess',
 		{
-			email: {
+			email_address: {
 				type: DataTypes.STRING(255),
 				lowercase: true,
 				required: true
