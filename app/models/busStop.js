@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(20)
       },
       isOpen: {
-        type: DataTypes.TINYINT(1),
-        default: false
+        type: DataTypes.BOOLEAN(),
+				defaultValue: true
       }
 		},
 		{
