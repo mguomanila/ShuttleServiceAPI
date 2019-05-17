@@ -24,15 +24,15 @@
   "homepage": "https://github.com/aut-shuttle/api#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "date-fns": "^1.30.1",
     "dotenv-safe": "^6.1.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.0",
     "express-validator": "^5.3.1",
-    "helmet": "^3.16.0",
+    "helmet": "^3.18.0",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.0",
@@ -41,17 +41,17 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "request-ip": "^2.1.3",
-    "sequelize": "^5.2.12",
+    "sequelize": "^5.8.6",
     "trim-request": "^1.0.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
+    "chai-http": "^4.3.0",
     "faker": "^4.1.0",
-    "mocha": "^6.1.1",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.16.4",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.1",
     "sequelize-cli": "^5.4.0"
   }
 }
