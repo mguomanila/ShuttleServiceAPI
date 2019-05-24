@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING()
 			},
 			fare: {
-				type: DataTypes.DECIMAL(5,2)
+				type: DataTypes.DECIMAL(5, 2)
 			},
 			service_id: {
 				type: DataTypes.INTEGER()
