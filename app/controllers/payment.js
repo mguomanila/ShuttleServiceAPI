@@ -90,7 +90,7 @@ const updateUserBalance = async (user, topupAmount) => {
 }
 
 /**
- * Return All Payments function, called by GET `/payments` route
+ * Return All Payments function, called by GET `/payments` route.
  */
 exports.getAll = async (req, res) => {
 	try {
@@ -101,7 +101,7 @@ exports.getAll = async (req, res) => {
 }
 
 /**
- * Create Payment function, called by POST `/payments` route
+ * Create Payment function, called by POST `/payments` route.
  */
 exports.createPayment = async (req, res) => {
 	try {
