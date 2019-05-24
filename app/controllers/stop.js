@@ -33,7 +33,7 @@ const getAll = async req => {
 const getOne = async req => {
 	return new Promise((resolve, reject) => {
 		const id = req.params.id
-		BusStop.findAll({ where: { id } })
+		BusStop.findOne({ where: { id } })
 			.then(stop =>
 				stop != null
 					? resolve(stop)
