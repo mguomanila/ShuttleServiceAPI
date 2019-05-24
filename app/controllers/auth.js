@@ -4,6 +4,7 @@ const Role = require('../models/').Role
 const UserAccess = require('../models/').UserAccess
 const ForgotPassword = require('../models/').ForgotPassword
 const utils = require('../middleware/utils')
+const emailer = require('../middleware/emailer')
 const uuid = require('uuid')
 const { addHours } = require('date-fns')
 const { matchedData } = require('express-validator/filter')
@@ -415,7 +416,7 @@ const findForgotPassword = async id => {
 const saveForgotPassword = async req => {
 	return new Promise((resolve, reject) => {
 		ForgotPassword.create({
-			email: req.body.email_address,
+			email_address: req.body.email_address,
 			verification: uuid.v4(),
 			ipRequest: utils.getIP(req),
 			browserRequest: utils.getBrowserInfo(req),
@@ -519,23 +520,14 @@ exports.login = async (req, res) => {
  */
 exports.register = async (req, res) => {
 	try {
-		const item = await registerUser(req)
-		const userInfo = setUserInfo(item)
-		const response = returnRegisterToken(item, userInfo)
-		//emailer.sendRegistrationEmailMessage(locale, item)
-		res.status(201).json(response)
-
-		// Gets locale from header 'Accept-Language'
-		//const locale = req.getLocale()
-		//req = matchedData(req)
-		//const doesEmailExists = await emailer.emailExists(req.email)
-		// if (!doesEmailExists) {
-		// 	const item = await registerUser(req)
-		// 	const userInfo = setUserInfo(item)
-		// 	const response = returnRegisterToken(item, userInfo)
-		// 	//emailer.sendRegistrationEmailMessage(locale, item)
-		// 	res.status(201).json(response)
-		// }
+		const doesEmailExists = await emailer.emailExists(req.body.email_address)
+		if (!doesEmailExists) {
+			const item = await registerUser(req)
+			const userInfo = setUserInfo(item)
+			const response = returnRegisterToken(item, userInfo)
+			emailer.sendRegistrationEmailMessage(item)
+			res.status(201).json(response)
+		}
 	} catch (error) {
 		utils.handleError(res, error)
 	}
@@ -562,9 +554,9 @@ exports.verify = async (req, res) => {
  */
 exports.forgotPassword = async (req, res) => {
 	try {
-		await findUser(req.body.email_address)
+		const user = await findUser(req.body.email_address)
 		const item = await saveForgotPassword(req)
-		//emailer.sendResetPasswordEmailMessage(locale, item)
+		emailer.sendResetPasswordEmailMessage(item)
 		res.status(200).json(forgotPasswordResponse(item))
 	} catch (error) {
 		utils.handleError(res, error)
@@ -579,7 +571,7 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
 	try {
 		const forgotPassword = await findForgotPassword(req.body.id)
-		const user = await findUserToResetPassword(forgotPassword.email)
+		const user = await findUserToResetPassword(forgotPassword.email_address)
 		await updatePassword(req.body.password, user)
 		const result = await markResetPasswordAsUsed(req, forgotPassword)
 		res.status(200).json(result)
