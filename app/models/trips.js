@@ -23,8 +23,15 @@ module.exports = (sequelize, DataTypes) => {
 					exclude: ['service_id']
 				},
 				include: [
-					{ model: sequelize.models.Calendar, as: 'service' },
-					{ model: sequelize.models.TripStop, as: 'stops' }
+					{
+						model: sequelize.models.Calendar,
+						as: 'service',
+						attributes: { exclude: ['id'] }
+					},
+					{
+						model: sequelize.models.TripStop,
+						as: 'stops'
+					}
 				],
 				order: [['stops', 'stop_sequence', 'asc']]
 			}

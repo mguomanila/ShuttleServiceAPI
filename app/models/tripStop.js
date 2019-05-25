@@ -28,7 +28,12 @@ module.exports = (sequelize, DataTypes) => {
 				attributes: {
 					exclude: ['stop_id', 'trip_id']
 				},
-				include: [{ model: sequelize.models.BusStop, as: 'stop' }]
+				include: [
+					{
+						model: sequelize.models.BusStop,
+						as: 'stop'
+					}
+				]
 			}
 		}
 	)
