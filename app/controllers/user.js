@@ -1,92 +1,127 @@
 const User = require('../models/').User
-const Role = require('../models/').Role
-const uuid = require('uuid')
-const emailer = require('../middleware/emailer')
 const utils = require('../middleware/utils')
 
-module.exports = {
-	/**
-	 * Creates a user based on given details.
-	 * @param {Object} req Request body
-	 * @param {Object} res Response body
-	 */
-	createUser(req, res) {
-		return User.create({
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			date_of_birth: req.body.date_of_birth,
-			gender: req.body.gender,
-			role_id: req.body.role_id,
-			email_address: req.body.email_address,
-			password: req.body.password,
-			balance: req.body.balance,
-			university_id: req.body.university_id,
-			id_expiry: req.body.id_expiry,
-			verification: uuid.v4()
-		})
-			.then(user => emailer.sendRegistrationEmailMessage(user))
-			.then(user => res.status(201).send(user))
-			.catch(error => res.status(400).send(error))
-	},
+const getOneUser = async id => {
+	return new Promise((resolve, reject) => {
+		User.findOne({ where: { id } }).then(user =>
+			user != null
+				? resolve(user)
+				: utils.itemNotFound(null, user, reject, 'NOT_FOUND')
+		)
+	})
+}
 
-	/**
-	 * Returns the details for all users.
-	 * @param {Object} req Request body
-	 * @param {Object} res Response body
-	 */
-	getAll(req, res) {
-		User.findAll({})
-			.then(users => res.status(200).send(users))
-			.catch(error => res.status(400).send(error))
-	},
+const getAll = async req => {
+	return new Promise((resolve, reject) => {
+		User.findAll()
+			.then(user =>
+				user != null
+					? resolve(user)
+					: utils.itemNotFound(null, user, reject, 'USER_NOT_FOUND')
+			)
+			.catch(error => reject(utils.buildErrObject(422, error.message)))
+	})
+}
 
-	/**
-	 * Returns the given user's details.
-	 * @param {Object} req Request body
-	 * @param {Object} res Response body
-	 */
-	getOne(req, res) {
-		const id = req.params.id
-		User.findOne({
-			where: {
-				id: id
-			}
-		})
-			.then(user => res.status(200).send(user))
-			.catch(error => res.status(400).send(error))
-	},
-
-	/**
-	 * Updates the given user returns modified user
-	 * @param {Object} req Request body
-	 * @param {Object} res Request response
-	 */
-	update(req, res) {
-		const id = req.params.id
-		const updates = req.body.updates
-		User.findOne({
-			where: {
-				id
-			}
-		})
+const updateUser = async (req, id) => {
+	return new Promise((resolve, reject) => {
+		User.findOne({ where: { id } })
 			.then(user => {
-				return user.update(updates)
+				if (user == null) {
+					utils.itemNotFound(null, user, reject, 'NOT_FOUND')
+				} else {
+					user.first_name = req.body.first_name
+					user.last_name = req.body.last_name
+					user.date_of_birth = req.body.date_of_birth
+					user.gender = req.body.gender
+					user.role_id = req.body.role_id
+					user.email_address = req.body.email_address
+					user.points = req.body.points
+					user.university_id = req.body.university_id
+					user.id_expiry = req.body.id_expiry
+					user.enabled = req.body.enabled
+				}
+				user
+					.save()
+					.then(user =>
+						user != null
+							? resolve(user)
+							: utils.itemNotFound(null, user, reject, 'USER_NOT_FOUND')
+					)
 			})
-			.then(user => res.status(200).send(user))
-			.catch(error => res.status(400).send(error))
-	},
+			.catch(error => reject(utils.buildErrObject(422, error.message)))
+	})
+}
 
-	/**
-	 * Deletes the given user from the database returns number of rows deleted.
-	 * @param {Object} req Request body
-	 * @param {Object} res Request response
-	 */
-	delete(req, res) {
-		const id = req.params.id
+const deleteUser = async id => {
+	return new Promise((resolve, reject) => {
 		User.destroy({ where: { id } })
 			.then(user => {
-				res.json(utils.buildSuccObject('USER_DELETED'))
+				user == 1
+					? resolve(utils.buildSuccObject('USER_DELETED'))
+					: utils.itemNotFound(
+							null,
+							user,
+							reject,
+							'USER_NOT_FOUND_OR_ALREADY_DELETED'
+					  )
 			})
-			.catch(err => utils.buildErrObject(422, err.message))
+			.catch(error => reject(utils.buildErrObject(422, error.message)))
+	})
+}
+
+/**
+ * Returns the given user's details.
+ * @param {Object} req Request body
+ * @param {Object} res Response body
+ */
+exports.getOne = async (req, res) => {
+	try {
+		const id = req.params.id
+		res.status(200).json(await getOneUser(id))
+	} catch (error) {
+		utils.handleError(res, error)
+	}
+}
+
+/**
+ * Returns the details for all users.
+ * @param {Object} req Request body
+ * @param {Object} res Response body
+ */
+exports.getAll = async (req, res) => {
+	try {
+		const allUsers = await getAll()
+		res.status(200).json(allUsers)
+	} catch (error) {
+		utils.handleError(res, error)
+	}
+}
+
+/**
+ * Deletes the given user from the database returns number of rows deleted.
+ * @param {Object} req Request body
+ * @param {Object} res Request response
+ */
+exports.deleteUser = async (req, res) => {
+	try {
+		const id = req.params.id
+		res.status(200).json(await deleteUser(id))
+	} catch (error) {
+		utils.handleError(res, error)
+	}
+}
+
+/**
+ * Updates the given user returns modified user
+ * @param {Object} req Request body
+ * @param {Object} res Request response
+ */
+exports.updateUser = async (req, res) => {
+	try {
+		const id = req.params.id
+		res.status(200).json(await updateUser(req, id))
+	} catch (error) {
+		utils.handleError(res, error)
 	}
 }

@@ -9,15 +9,7 @@ const requireAuth = passport.authenticate('jwt', {
 })
 const { ADMIN } = require('../middleware/utils')
 
-// Create a New User
-router.post(
-	'/',
-	requireAuth,
-	AuthController.roleAuthorization(ADMIN),
-	userController.createUser
-)
-
-// Read all Users
+// Return All Users
 router.get(
 	'/',
 	requireAuth,
@@ -26,7 +18,7 @@ router.get(
 	userController.getAll
 )
 
-// Read one User by ID
+// Return User by ID
 router.get(
 	'/:id',
 	requireAuth,
@@ -34,20 +26,20 @@ router.get(
 	userController.getOne
 )
 
-// Update one User by ID
+// Update User by ID
 router.patch(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.update
+	userController.updateUser
 )
 
-// Delete one User by ID
+// Delete User by ID
 router.delete(
 	'/:id',
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
-	userController.delete
+	userController.deleteUser
 )
 
 module.exports = router

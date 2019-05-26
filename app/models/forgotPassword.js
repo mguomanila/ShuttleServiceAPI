@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			used: {
 				type: DataTypes.BOOLEAN(),
-				default: 0
+				defaultValue: false
 			},
 			ipRequest: {
 				type: DataTypes.STRING(100)

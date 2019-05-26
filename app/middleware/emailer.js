@@ -37,7 +37,6 @@ const sendEmail = async (data, callback) => {
  * @param {string} htmlMessage - html message
  */
 const prepareToSendEmail = (user, subject, htmlMessage) => {
-	// TODO: Implement verification code
 	user = {
 		first_name: user.first_name,
 		email: user.email_address,
