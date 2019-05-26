@@ -18,7 +18,14 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			versionKey: false,
 			timestamps: false,
-			tableName: 'Boarding'
+			tableName: 'Boarding',
+			defaultScope: {
+				attributes: { exclude: ['user_id', 'trip_id'] },
+				include: [
+					{ model: sequelize.models.User.scope('basic'), as: 'passenger' },
+					{ model: sequelize.models.Trip, as: 'trip' }
+				]
+			}
 		}
 	)
 
@@ -28,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 				fieldName: 'user_id'
 			},
 			targetKey: 'id',
-			as: 'user'
+			as: 'passenger'
 		})
 		Boarding.belongsTo(models.Trip, {
 			foreignKey: {
