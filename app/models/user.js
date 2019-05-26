@@ -104,6 +104,23 @@ module.exports = (sequelize, DataTypes) => {
 					attributes: {
 						include: ['password']
 					}
+				},
+				basic: {
+					attributes: {
+						exclude: [
+							'date_of_birth',
+							'email_verified',
+							'password',
+							'verification',
+							'login_attempts',
+							'block_expires',
+							'balance',
+							'enabled',
+							'createdAt',
+							'updatedAt',
+							'deletedAt'
+						]
+					}
 				}
 			}
 		}
