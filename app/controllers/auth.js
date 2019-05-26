@@ -167,6 +167,19 @@ const userIsBlocked = async user => {
 }
 
 /**
+ * Checks if the user account is disabled
+ * @param {Object} user user object
+ */
+const userIsDisabled = async user => {
+	return new Promise((resolve, reject) => {
+		if (!user.enabled) {
+			reject(utils.buildErrObject(409, 'DISABLED_USER'))
+		}
+		resolve(true)
+	})
+}
+
+/**
  * Finds user by email
  * @param {string} email - user´s email
  */
@@ -497,6 +510,7 @@ const getUserIdFromToken = async token => {
 exports.login = async (req, res) => {
 	try {
 		const user = await findUser(req.body.email_address)
+		await userIsDisabled(user)
 		await userIsBlocked(user)
 		await checkLoginAttemptsAndBlockExpires(user)
 		const isPasswordMatch = await auth.checkPassword(req.body.password, user)
@@ -555,6 +569,7 @@ exports.verify = async (req, res) => {
 exports.forgotPassword = async (req, res) => {
 	try {
 		const user = await findUser(req.body.email_address)
+		await userIsDisabled(user)
 		const item = await saveForgotPassword(req)
 		emailer.sendResetPasswordEmailMessage(item)
 		res.status(200).json(forgotPasswordResponse(item))
@@ -572,6 +587,7 @@ exports.resetPassword = async (req, res) => {
 	try {
 		const forgotPassword = await findForgotPassword(req.body.id)
 		const user = await findUserToResetPassword(forgotPassword.email_address)
+		await userIsDisabled(user)
 		await updatePassword(req.body.password, user)
 		const result = await markResetPasswordAsUsed(req, forgotPassword)
 		res.status(200).json(result)
@@ -593,6 +609,7 @@ exports.getRefreshToken = async (req, res) => {
 		let userId = await getUserIdFromToken(tokenEncrypted)
 		userId = await utils.isIDGood(userId)
 		const user = await findUserById(userId)
+		await userIsDisabled(user)
 		const token = await saveUserAccessAndReturnToken(req, user)
 		// Removes user info from response
 		delete token.user
@@ -612,7 +629,7 @@ exports.roleAuthorization = roles => async (req, res, next) => {
 			id: req.user.id,
 			roles
 		}
-		console.log(data)
+		await userIsDisabled(req.user)
 		await checkPermissions(data, next)
 	} catch (error) {
 		utils.handleError(res, error)
