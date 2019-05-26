@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
 				required: true
 			},
 			email_verified: {
-				type: DataTypes.TINYINT(1),
-				defaultValue: 0
+				type: DataTypes.BOOLEAN(),
+				defaultValue: false
 			},
 			password: {
 				type: DataTypes.STRING(255),
@@ -71,8 +71,8 @@ module.exports = (sequelize, DataTypes) => {
 				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
 			},
 			enabled: {
-				type: DataTypes.TINYINT(1),
-				defaultValue: 1
+				type: DataTypes.BOOLEAN(),
+				defaultValue: true
 			},
 			deletedAt: {
 				type: DataTypes.DATE

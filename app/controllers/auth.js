@@ -66,7 +66,7 @@ const setUserInfo = req => {
 const saveUserAccessAndReturnToken = async (req, user) => {
 	return new Promise((resolve, reject) => {
 		UserAccess.create({
-			email: user.email_address,
+			email_address: user.email_address,
 			ip: utils.getIP(req),
 			browser: utils.getBrowserInfo(req),
 			country: utils.getCountry(req)
@@ -278,7 +278,7 @@ const verificationExists = async id => {
 		User.findOne({
 			where: {
 				verification: id,
-				email_verified: 0 // TODO: Make Boolean
+				email_verified: false
 			}
 		})
 			.then(user =>
@@ -328,7 +328,7 @@ const verifyUser = async user => {
  */
 const markResetPasswordAsUsed = async (req, forgot) => {
 	return new Promise((resolve, reject) => {
-		forgot.used = 1 // TODO: Change to Boolean
+		forgot.used = true
 		forgot.ipChanged = utils.getIP(req)
 		forgot.browserChanged = utils.getBrowserInfo(req)
 		forgot.countryChanged = utils.getCountry(req)
@@ -392,7 +392,7 @@ const findForgotPassword = async id => {
 		ForgotPassword.findOne({
 			where: {
 				verification: id,
-				used: 0 // TODO: Make Boolean
+				used: false
 			}
 		})
 			.then(forgot =>
