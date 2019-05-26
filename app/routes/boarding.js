@@ -7,7 +7,7 @@ const passport = require('passport')
 const requireAuth = passport.authenticate('jwt', {
 	session: false
 })
-const { ADMIN, STANDARD } = require('../middleware/utils')
+const { ADMIN, DRIVER } = require('../middleware/utils')
 
 // Return all Boardings
 router.get(
@@ -15,6 +15,14 @@ router.get(
 	requireAuth,
 	AuthController.roleAuthorization(ADMIN),
 	controller.getAll
+)
+
+// Board a Passenger
+router.post(
+	'/',
+	requireAuth,
+	AuthController.roleAuthorization(DRIVER),
+	controller.boardUser
 )
 
 module.exports = router
