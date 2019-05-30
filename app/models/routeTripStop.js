@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-	const TripStop = sequelize.define(
-		'TripStop',
+	const RouteTripStop = sequelize.define(
+		'RouteTripStop',
 		{
 			trip_id: {
 				type: DataTypes.INTEGER()
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	)
 
-	TripStop.associate = models => {
-		TripStop.belongsTo(models.BusStop, {
+	RouteTripStop.associate = models => {
+		RouteTripStop.belongsTo(models.BusStop, {
 			foreignKey: {
 				fieldName: 'stop_id'
 			},
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
 			as: 'stop'
 		})
 
-		TripStop.belongsTo(models.Trip, {
+		RouteTripStop.belongsTo(models.Trip, {
 			foreignKey: {
 				fieldName: 'trip_id'
 			},
@@ -56,5 +56,5 @@ module.exports = (sequelize, DataTypes) => {
 		})
 	}
 
-	return TripStop
+	return RouteTripStop
 }

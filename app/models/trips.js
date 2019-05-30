@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 						attributes: { exclude: ['id'] }
 					},
 					{
-						model: sequelize.models.TripStop,
+						model: sequelize.models.RouteTripStop,
 						as: 'stops'
 					}
 				],
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
 			as: 'service'
 		})
 
-		Trip.hasMany(models.TripStop, {
+		Trip.hasMany(models.RouteTripStop, {
 			foreignKey: {
 				fieldName: 'trip_id'
 			},
