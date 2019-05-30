@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 						as: 'stops'
 					}
 				],
-				order: [['stops', 'stop_sequence', 'asc']]
+				order: [['id', 'asc'], ['stops', 'stop_sequence', 'asc']]
 			}
 		}
 	)
