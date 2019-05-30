@@ -30,7 +30,7 @@ app.use(
 	})
 )
 
-//Database initialisation
+// Database initialisation
 const models = require('./app/models')
 
 models.sequelize
