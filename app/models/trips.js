@@ -5,13 +5,16 @@ module.exports = (sequelize, DataTypes) => {
 		'Trip',
 		{
 			name: {
-				type: DataTypes.STRING()
+				type: DataTypes.STRING(),
+				allowNull: false
 			},
 			fare: {
-				type: DataTypes.DECIMAL(5, 2)
+				type: DataTypes.DECIMAL(5, 2),
+				allowNull: false
 			},
 			service_id: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			}
 		},
 		{

@@ -19,15 +19,13 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			timestamp: {
 				type: DataTypes.DATE,
+				allowNull: false,
 				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
 			}
 		},
 		{
 			timestamps: false,
 			tableName: 'Transaction'
-			// defaultScope: {
-			// 	include: [{ all: true }]
-			// }
 		}
 	)
 	// Association: User -> Role

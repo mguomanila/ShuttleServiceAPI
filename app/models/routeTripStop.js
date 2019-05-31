@@ -5,19 +5,24 @@ module.exports = (sequelize, DataTypes) => {
 		'RouteTripStop',
 		{
 			trip_id: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			},
 			stop_id: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			},
 			arrival_time: {
-				type: DataTypes.TIME()
+				type: DataTypes.TIME(),
+				allowNull: false
 			},
 			departure_time: {
-				type: DataTypes.TIME()
+				type: DataTypes.TIME(),
+				allowNull: false
 			},
 			stop_sequence: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			}
 		},
 		{

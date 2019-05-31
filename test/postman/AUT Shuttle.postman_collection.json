@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5e050159-c4d3-4f9d-88b1-70e84a93dbf5",
+		"_postman_id": "b7e4372e-bca4-4324-b6bb-01852ffc84a3",
 		"name": "AUT Shuttle",
 		"description": "Request Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -69,7 +69,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96cf076aed9e2d630f3ecea6a171e3c7130dfafd3ecfec7603258851dd658091268e282d99d60d4961cfd63d5c6fd14d7c227b4cc8bbc97f703534655ce7e5aa43f758d88fb4c04fae0074e0302a45d787a108a4fac7c3d5373066cd9f7324bdad1",
+									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96c85e4fb410701891193c963833eb405d11c1f93da2e8cd2e6feffe77d7a4b83cb42270ebe41b49fbf8a083dfb0fc6b668bfae0048542e5807641e93043547f106674be767fb26272ac2c9aaa8fc0ba5fe64fd0fac0abee6edf608ef760f59c53a",
 									"type": "string"
 								}
 							]
@@ -77,7 +77,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/52",
+							"raw": "http://localhost:3000/users/53",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -85,7 +85,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"52"
+								"53"
 							]
 						},
 						"description": "Gets a User by ID"
@@ -100,7 +100,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96cf076aed9e2d630f3ecea6a171e3c7130dfafd3ecfec7603258851dd658091268e282d99d60d4961cfd63d5c6fd14d7c227b4cc8bbc97f703534655ce7e5aa43f758d88fb4c04fae0074e0302a45d787a108a4fac7c3d5373066cd9f7324bdad1",
+									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96c85e4fb410701891193c963833eb405d11c1f93da2e8cd2e6feffe77d7a4b83cb42270ebe41b49fbf8a083dfb0fc6b668bfae0048542e5807641e93043547f106674be767fb26272ac2c9aaa8fc0ba5fe64fd0fac0abee6edf608ef760f59c53a",
 									"type": "string"
 								}
 							]
@@ -1199,6 +1199,101 @@
 							"port": "3000",
 							"path": [
 								"boarding"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "Get All Drivers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96c85e4fb410701891193c963833eb405d11c1f93da2e8cd2e6feffe77d7a4b83cb42270ebe41b49fbf8a083dfb0fc6b668bfae0048542e5807641e93043547f106674be767fb26272ac2c9aaa8fc0ba5fe64fd0fac0abee6edf608ef760f59c53a",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drivers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96c85e4fb410701891193c963833eb405d11c1f93da2e8cd2e6feffe77d7a4b83cb42270ebe41b49fbf8a083dfb0fc6b668bfae0048542e5807641e93043547f106674be767fb26272ac2c9aaa8fc0ba5fe64fd0fac0abee6edf608ef760f59c53a",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drivers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drivers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Driver's Trips",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "59f40bb2b600bfae37c081ac0c428fe984c35ac1ddd45d01fd843d5f9fb292ddb03db365c888d3726ab29bbfec99dee5c78bff498be71571709493a393c2f96c85e4fb410701891193c963833eb405d11c1f93da2e8cd2e6feffe77d7a4b83cb42270ebe41b49fbf8a083dfb0fc6b668bfae0048542e5807641e93043547f106674be767fb26272ac2c9aaa8fc0ba5fe64fd0fac0abee6edf608ef760f59c53a",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drivers/2/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drivers",
+								"2",
+								"trips"
 							]
 						}
 					},

@@ -3,20 +3,25 @@ module.exports = (sequelize, DataTypes) => {
 		'BusStop',
 		{
 			name: {
-				type: DataTypes.STRING(100)
+				type: DataTypes.STRING(100),
+				allowNull: false
 			},
 			description: {
-				type: DataTypes.STRING(255)
-			},
-			longitude: {
-				type: DataTypes.STRING(20)
+				type: DataTypes.STRING(255),
+				allowNull: true
 			},
 			latitude: {
-				type: DataTypes.STRING(20)
+				type: DataTypes.STRING(20),
+				allowNull: false
+			},
+			longitude: {
+				type: DataTypes.STRING(20),
+				allowNull: false
 			},
 			isOpen: {
 				type: DataTypes.BOOLEAN(),
-				defaultValue: true
+				defaultValue: true,
+				allowNull: false
 			}
 		},
 		{
