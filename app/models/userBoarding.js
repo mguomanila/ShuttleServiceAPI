@@ -5,13 +5,16 @@ module.exports = (sequelize, DataTypes) => {
 		'Boarding',
 		{
 			user_id: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			},
 			trip_id: {
-				type: DataTypes.INTEGER()
+				type: DataTypes.INTEGER(),
+				allowNull: false
 			},
 			timestamp: {
 				type: DataTypes.DATE,
+				allowNull: false,
 				defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
 			}
 		},
