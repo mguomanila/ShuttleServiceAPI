@@ -25,6 +25,14 @@ router.get(
 	controller.getOne
 )
 
+// Return Given Driver's Trips
+router.get(
+	'/:id/trips',
+	requireAuth,
+	AuthController.roleAuthorization(DRIVER),
+	controller.getDriverTrips
+)
+
 // Create a Driver
 // router.post(
 // 	'/',
