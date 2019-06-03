@@ -6,74 +6,60 @@ const server = require('../server')
 const should = chai.should()
 
 const paymentDetails = {
-	userID: 1,
-	transactionID: 'PAY-TEST123-FROMPAYPAL',
-	amount: 23
+	amount: '100',
+	payment_id: '100'
 }
-let token = ''
+var token = ''
+
+const loginDetails = {
+	email_address: '1@auntuni.ac.nz',
+	password: '1'
+}
 
 chai.use(chaiHttp)
 
 describe('*********** PAYMENT ***********', () => {
-	/**
-	 * GET REQUESTS
-	 */
-	describe('/GET payments', () => {
-		it('it should NOT be able to consume the route since no token was sent', done => {
+	describe('/POST login', () => {
+		it('it should GET token', done => {
 			chai
 				.request(server)
-				.get('/payments')
+				.post('/login')
+				.send(loginDetails)
+				.end((err, res) => {
+					token = res.body.token
+					done()
+				})
+		}).timeout(5000)
+	})
+	describe('/POST payments', () => {
+		it('it should not GET all payments without correct auth', done => {
+			chai
+				.request(server)
+				.post('/payments')
 				.end((err, res) => {
 					res.should.have.status(401)
 					done()
 				})
 		})
-		it('it should GET all payments', done => {
-			chai
-				.request(server)
-				.get('/payments')
-				.set('Authorization', `Bearer ${token}`)
-				.end((err, res) => {
-					res.should.have.status(200)
-					res.body.should.be.an('object')
-					res.body.docs.should.be.an('array')
-					done()
-				})
-		})
 	})
 
-	describe('/GET/:id payment', () => {
-		it('it should GET a payment by the given id', done => {
-			chai
-				.request(server)
-				.get(`/users/${id}`)
-				.set('Authorization', `Bearer ${token}`)
-				.end((error, res) => {
-					res.should.have.status(200)
-					res.body.should.be.a('object')
-					res.body.should.have.property('transactionID')
-					done()
-				})
-		})
-	})
+	// describe('/POST payments', () => {
+	// 	it('it should GET all payments', done => {
+	// 		chai
+	// 			.request(server)
+	// 			.post('/payments')
+	// 			.send(paymentDetails)
+	// 			.set('Authorization', `Bearer ${token}`)
+	// 			.end((err, res) => {
+	// 				res.should.have.status(200)
+	// 				done()
+	// 			})
+	// 	})
+	// })
 
 	/**
 	 * POST REQUESTS
 	 */
-	describe('/POST payment', () => {
-		it('it should POST payment data', done => {
-			chai
-				.request(server)
-				.post('/payments')
-				.send(paymentDetails)
-				.end((err, res) => {
-					res.should.have.status(200)
-					res.body.should.be.an('object')
-					res.body.should.have.property('tranactionID')
-					done()
-				})
-		})
-	})
 
 	/**
 	 * PATCH REQUESTS
@@ -83,8 +69,9 @@ describe('*********** PAYMENT ***********', () => {
 			chai
 				.request(server)
 				.delete('/payments')
+				.set('Authorization', `Bearer ${token}`)
 				.end((err, res) => {
-					res.should.have.status(405)
+					res.should.have.status(404)
 					done()
 				})
 		})
@@ -98,8 +85,9 @@ describe('*********** PAYMENT ***********', () => {
 			chai
 				.request(server)
 				.delete('/payments')
+				.set('Authorization', `Bearer ${token}`)
 				.end((err, res) => {
-					res.should.have.status(405)
+					res.should.have.status(404)
 					done()
 				})
 		})
