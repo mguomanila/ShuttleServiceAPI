@@ -15,6 +15,7 @@ const sequelize = new Sequelize(
 		host: process.env.DB_HOST,
 		dialect: 'mysql',
 		operatorAliases: false,
+		logging: process.env.NODE_ENV === 'development',
 
 		pool: {
 			max: 5,
