@@ -8,8 +8,8 @@ const faker = require('faker')
 const User = require('../app/models/user')
 
 const loginDetails = {
-	email_address: 'zz@admin.com',
-	password: '123'
+	email_address: '1@autuni.ac.nz',
+	password: '1'
 }
 
 let token = ''
@@ -29,7 +29,6 @@ describe('*********** USERS ***********', () => {
 					res.should.have.status(200)
 					res.body.should.be.an('object')
 					res.body.should.have.property('token')
-					token = res.body.token
 					done()
 				})
 		})
@@ -40,22 +39,23 @@ describe('*********** USERS ***********', () => {
 			const user = {
 				first_name: faker.name.firstName(),
 				last_name: faker.name.lastName(),
-				email_address,
+				email_address: faker.internet.email(),
 				date_of_birth: faker.date.past(),
 				gender: 'MALE',
-				role_id: faker.random.number(1, 3),
+				role_id: 1,
 				password: faker.random.words(2),
 				university_id: faker.random.number(20000),
 				id_expiry: faker.date.future(2)
 			}
 			chai
 				.request(server)
-				.post('/users')
+				.post('/register')
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(201)
 					res.body.should.be.a('object')
-					createdID.push(res.body.id)
+					createdID.push(res.body.user.id)
+					token = res.body.token
 					done()
 				})
 		})
@@ -63,17 +63,17 @@ describe('*********** USERS ***********', () => {
 			const user = {
 				first_name: faker.name.firstName(),
 				last_name: faker.name.lastName(),
-				email_address,
+				email_address: 'hello@hello.com',
 				date_of_birth: faker.date.past(),
 				gender: 'MALE',
-				role_id: faker.random.number(1, 3),
+				role_id: 1,
 				password: faker.random.words(2),
 				university_id: faker.random.number(20000),
 				id_expiry: faker.date.future(2)
 			}
 			chai
 				.request(server)
-				.post('/users')
+				.post('/register')
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(422)
@@ -86,7 +86,7 @@ describe('*********** USERS ***********', () => {
 
 	describe('/GET/:id user', () => {
 		it('it should GET a user by the given id', done => {
-			const id = createdID.slice(-1).pop()
+			const id = createdID.slice(-1)[0] 
 			chai
 				.request(server)
 				.get(`/users/${id}`)
@@ -94,29 +94,34 @@ describe('*********** USERS ***********', () => {
 				.end((error, res) => {
 					res.should.have.status(200)
 					res.body.should.be.a('object')
-					res.body.should.have.property('name')
+					res.body.should.have.property('first_name')
 					res.body.should.have.property('id').eql(id)
 					done()
 				})
 		})
 	})
-})
-
-after(() => {
-	createdID.forEach(id => {
-		User.findOne({
-			where: {
-				id
+	describe('/Patch user', () => {
+		it('it should PATCH a user by given token', done => {
+			const id = createdID.slice(-1)[0] 
+			const newName = faker.name.firstName()
+			const patchyBoi = {
+				first_name: '',
+				id: ''
 			}
-		}).then(user => {
-			if (user != null) {
-				User.destroy({
-					where: {
-						id
-					}
+			patchyBoi.first_name = newName
+			patchyBoi.id = id
+			console.log(id)
+			chai
+				.request(server)
+				.patch('/profile')
+				.set('Authorization', `Bearer ${token}`)
+				.send(patchyBoi)
+				.end((error, res) => {
+					res.should.have.status(200)
+					res.body.should.be.a('object')
+					res.body.first_name.should.equal(newName)
+					done()
 				})
-				console.log(`Deleting test user id: ${id}`)
-			}
 		})
 	})
 })
