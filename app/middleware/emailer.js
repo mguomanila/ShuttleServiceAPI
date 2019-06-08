@@ -54,7 +54,7 @@ const prepareToSendEmail = (user, subject, htmlMessage) => {
 				: console.log(`Email FAILED to: ${user.email}`)
 		)
 	} else if (process.env.NODE_ENV === 'development') {
-		console.log(data)
+		console.log(`Pretended to send email: '${data.subject}' to: ${user.email}`)
 	}
 }
 
