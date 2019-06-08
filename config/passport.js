@@ -46,16 +46,8 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 				done(null, false)
 			}
 			done(null, user)
-			//done(!user ? done(null, false) : done(null, user))
 		})
 		.catch(err => done(err, false))
-
-	// User.findById(payload.data.id, (err, user) => {
-	//   if (err) {
-	//     return done(err, false)
-	//   }
-	//   return !user ? done(null, false) : done(null, user)
-	// })
 })
 
 passport.use(jwtLogin)
