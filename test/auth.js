@@ -15,11 +15,9 @@ describe('*********** AUTH ***********', () => {
 			const user = {
 				first_name,
 				last_name,
-				email_address: faker.internet.email(
-					first_name,
-					last_name,
-					faker.random.arrayElement(['aut.ac.nz', 'autuni.ac.nz'])
-				),
+				email_address: `${first_name.toLowerCase()}.${last_name.toLowerCase()}@${faker.random.arrayElement(
+					['aut.ac.nz', 'autuni.ac.nz']
+				)}`,
 				date_of_birth: faker.date.past(20),
 				gender: faker.random.arrayElement(['MALE', 'FEMALE']),
 				role_id: faker.random.arrayElement([1, 2, 3]),
