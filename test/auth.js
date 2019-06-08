@@ -19,7 +19,7 @@ describe('*********** AUTH ***********', () => {
 					['aut.ac.nz', 'autuni.ac.nz']
 				)}`,
 				date_of_birth: faker.date.past(20),
-				gender: faker.random.arrayElement(['MALE', 'FEMALE']),
+				gender: faker.random.arrayElement(['MALE', 'FEMALE', 'DIVERSE']),
 				role_id: faker.random.arrayElement([1, 2, 3]),
 				password: faker.internet.password(8, 1),
 				university_id: faker.helpers.replaceSymbolWithNumber('######'),
