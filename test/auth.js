@@ -8,7 +8,7 @@ chai.use(chaiHttp)
 let newUser = {}
 
 describe('*********** AUTH ***********', () => {
-	describe('/POST register', () => {
+	describe('POST /register', () => {
 		it('should register a new user', done => {
 			let first_name = faker.name.firstName()
 			let last_name = faker.name.lastName()
@@ -34,7 +34,7 @@ describe('*********** AUTH ***********', () => {
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(201)
-					res.body.should.be.a('object')
+					res.body.should.be.an('object')
 					res.body.should.have.property('token')
 					res.body.should.not.have.property('password')
 					done()
@@ -59,7 +59,7 @@ describe('*********** AUTH ***********', () => {
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(422)
-					res.body.should.be.a('object')
+					res.body.should.be.an('object')
 					res.body.should.have.property('errors')
 					res.body.errors.should.have.property('msg')
 					res.body.errors.msg.should.equal('EMAIL_ALREADY_EXISTS')
@@ -68,7 +68,7 @@ describe('*********** AUTH ***********', () => {
 		})
 	})
 
-	describe('/POST login', () => {
+	describe('POST /login', () => {
 		it("should get a user's token", done => {
 			const loginDetails = {
 				email_address: newUser.email_address,
@@ -80,7 +80,7 @@ describe('*********** AUTH ***********', () => {
 				.send(loginDetails)
 				.end((err, res) => {
 					res.should.have.status(200)
-					res.body.should.be.a('object')
+					res.body.should.be.an('object')
 					res.body.should.have.property('token')
 					done()
 				})
@@ -97,7 +97,7 @@ describe('*********** AUTH ***********', () => {
 				.send(loginDetails)
 				.end((err, res) => {
 					res.should.have.status(404)
-					res.body.should.be.a('object')
+					res.body.should.be.an('object')
 					res.body.should.have.property('errors')
 					res.body.errors.should.have.property('msg')
 					res.body.errors.msg.should.equal('USER_DOES_NOT_EXIST')
