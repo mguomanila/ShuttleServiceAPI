@@ -15,7 +15,6 @@ const boardingPassenger = {
 	timestamp: '2019-05-26 05:37:32'
 }
 
-let user = {}
 let trip = {}
 let balance = 0.0
 let token = ''
@@ -31,7 +30,6 @@ describe('*********** BOARDING ***********', () => {
 					res.should.have.status(200)
 					res.body.should.be.an('object')
 					res.body.should.have.property('token')
-					user = res.body.user
 					token = res.body.token
 					done()
 				})
