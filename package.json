@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Serves API routes for the AUT Shuttle App and interacts with the data.test",
+  "description": "Serves API routes for the AUT Shuttle App and interacts with the data layer.",
   "main": "server.js",
   "directories": {
     "test": "test"
@@ -16,7 +16,17 @@
     "type": "git",
     "url": "git+https://github.com/aut-shuttle/api.git"
   },
-  "author": "Thea Miguel, Olaf Wrieden, Chenhui Lyu, Michael Jeffcoat",
+  "author": {
+    "name": "Olaf Wrieden",
+    "email": "olaf@olafwrieden.com",
+    "url": "https://olafwrieden.com"
+  },
+  "contributors": [
+    { "name": "Michael Jeffcoat" },
+    { "name": "Thea Miguel" },
+    { "name": "Hamish Maritz" },
+    { "name": "Chenhui Lyu" }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aut-shuttle/api/issues"
@@ -34,7 +44,6 @@
     "express-validator": "^5.3.1",
     "helmet": "^3.18.0",
     "morgan": "^1.9.1",
-    "mysql2": "^1.6.5",
     "nodemailer": "^6.1.0",
     "nodemailer-mailgun-transport": "^1.4.0",
     "passport": "^0.4.0",
@@ -51,7 +60,6 @@
     "faker": "^4.1.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.0",
-    "prettier": "^1.17.1",
-    "sequelize-cli": "^5.4.0"
+    "prettier": "^1.17.1"
   }
 }
