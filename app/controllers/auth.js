@@ -503,6 +503,23 @@ const getUserIdFromToken = async token => {
 }
 
 /**
+ * Checks if the domain of the email is valid on this platform
+ * @param {String} email_address - An email address to validate
+ */
+const validateDomain = email_address => {
+	return new Promise((resolve, reject) => {
+		// Get Domain from Email Address
+		var domain = email_address.split('@')[1]
+		const validDomains = ['autuni.ac.nz', 'aut.ac.nz']
+		// Check if Valid
+		if (validDomains.includes(domain)) {
+			resolve(email_address)
+		}
+		reject(utils.buildErrObject(406, 'INVALID_EMAIL_ADDRESS'))
+	})
+}
+
+/**
  * Login function called by route
  * @param {Object} req - request object
  * @param {Object} res - response object
@@ -534,6 +551,7 @@ exports.login = async (req, res) => {
  */
 exports.register = async (req, res) => {
 	try {
+		await validateDomain(req.body.email_address)
 		const doesEmailExists = await emailer.emailExists(req.body.email_address)
 		if (!doesEmailExists) {
 			const item = await registerUser(req)
