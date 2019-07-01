@@ -18,7 +18,7 @@ const sendEmail = async (data, callback) => {
 	const transporter = nodemailer.createTransport(mg(auth))
 	const mailOptions = {
 		from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM_ADDRESS}>`,
-		to: `${data.user.name} <${data.user.email}>`,
+		to: `${data.user.first_name} <${data.user.email}>`,
 		subject: data.subject,
 		html: data.htmlMessage
 	}
