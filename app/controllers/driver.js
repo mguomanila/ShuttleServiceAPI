@@ -44,7 +44,7 @@ const getDriverById = async id => {
 
 const getTripsByDriver = async driver => {
 	return new Promise((resolve, reject) => {
-		TripsDriver.findOne({ where: { driver_id: driver.id} })
+		TripsDriver.findOne({ where: { driver_id: driver.id } })
 			.then(trip =>
 				trip != null
 					? resolve(trip)

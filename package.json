@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mocha",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
     "format": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
@@ -22,10 +22,18 @@
     "url": "https://olafwrieden.com"
   },
   "contributors": [
-    { "name": "Michael Jeffcoat" },
-    { "name": "Thea Miguel" },
-    { "name": "Hamish Maritz" },
-    { "name": "Chenhui Lyu" }
+    {
+      "name": "Michael Jeffcoat"
+    },
+    {
+      "name": "Thea Miguel"
+    },
+    {
+      "name": "Hamish Maritz"
+    },
+    {
+      "name": "Chenhui Lyu"
+    }
   ],
   "license": "ISC",
   "bugs": {
@@ -39,27 +47,28 @@
     "crypto": "^1.0.1",
     "date-fns": "^1.30.1",
     "dotenv-safe": "^6.1.0",
-    "ejs": "^2.6.1",
-    "express": "^4.17.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
     "express-validator": "^5.3.1",
-    "helmet": "^3.18.0",
+    "helmet": "^3.20.0",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.1.0",
+    "mysql2": "^1.6.5",
+    "nodemailer": "^6.3.0",
     "nodemailer-mailgun-transport": "^1.4.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "request-ip": "^2.1.3",
-    "sequelize": "^5.8.6",
+    "sequelize": "^5.16.0",
     "trim-request": "^1.0.6",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "faker": "^4.1.0",
-    "mocha": "^6.1.4",
-    "nodemon": "^1.19.0",
-    "prettier": "^1.17.1"
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
   }
 }
