@@ -37,6 +37,8 @@ npm run format
 To unit test the code, run:
 
 ```javascript
+for windows only:
+$env:NODE_ENV='test'
 npm run test
 ```
 
@@ -45,9 +47,12 @@ npm run test
 To start (run) the API and handle requests in production, run:
 
 ```javascript
+for windows only:
+$env:NODE_ENV='development'
 npm start
 ```
 To start (run) the API and handle requests in development (with logging), run:
 ```javascript
+$env:NODE_ENV='development'
 npm run dev
 ```

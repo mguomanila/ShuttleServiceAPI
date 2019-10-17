@@ -7,9 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha",
+    "test": "mocha",
     "start": "node server.js",
-    "dev": "NODE_ENV=development nodemon server.js",
+    "dev": "nodemon server.js",
     "format": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
   "repository": {
