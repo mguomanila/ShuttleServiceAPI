@@ -29,5 +29,8 @@ module.exports = (sequelize, DataTypes) => {
 			tableName: 'BusStop'
 		}
 	)
+	BusStop.associate = function(models){
+		//
+	}
 	return BusStop
 }
